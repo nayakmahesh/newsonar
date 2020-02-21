@@ -12,12 +12,12 @@ platform:
 steps:
 
 - name: build-maven
-  image: mvn
+  image: maven:3-jdk-10
   commands:
   - mvn clean install --batch-mode
 
 - name: sonar
-  image: mvn
+  image: maven:3-jdk-10
   commands:
   - mvn verify sonar:sonar
   environment:
