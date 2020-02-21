@@ -1,0 +1,28 @@
+---
+kind: pipeline
+name: pr-test-sonarcloud
+
+node:
+  instance: highmemory
+  
+platform:
+  os: linux
+  arch: amd64
+
+- name: build-maven
+  image: mvn
+  commands:
+  - mvn clean install --batch-mode
+
+- name: sonar
+  image: mvn
+  commands:
+  - mvn verify sonar:sonar
+  environment:
+    MAVEN_OPTS: -Xmx512m
+  depends_on:
+  - build-maven
+
+trigger:
+  event:
+  - pull_request
