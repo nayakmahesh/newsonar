@@ -7,5 +7,5 @@ How to implement the Hystrix in a Spring Boot application.
 
 We need to add the Spring Cloud Starter Hystrix dependency in our build configuration file.
 
-add the @Hystrix command and @HystrixProperty for the Rest API and define the timeout in milliseconds value
+Add the @Hystrix command and @HystrixProperty for the Rest API and define the timeout in milliseconds value
 
