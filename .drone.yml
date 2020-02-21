@@ -8,7 +8,7 @@ steps:
   - mvn clean install --batch-mode
 
 - name: sonar
-  image: mvn
+  image: maven:3.6.2-jdk-11
   commands:
   - mvn verify sonar:sonar
   environment:
