@@ -6,3 +6,7 @@ steps:
   image: maven:3-jdk-10
   commands:
   - mvn clean
+
+trigger:
+  event:
+  - pull_request
