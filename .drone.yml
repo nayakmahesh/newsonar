@@ -7,6 +7,12 @@ steps:
   commands:
   - mvn install --batch-mode
   
+steps:
+- name: sonarstep
+  image: maven:3.6.2-jdk-11
+  commands:
+  - mvn clean verify sonar:sonar -Dsonar.login=371a5188195e16a5b9838856c9090718f6ce0089 -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.key=${DRONE_PULL_REQUEST} -Dsonar.pullrequest.branch=${DRONE_REPO_BRANCH} -Dsonar.pullrequest.github.repository=${DRONE_REPO}
+  
 trigger:
   event:
   - pull_request
