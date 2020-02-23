@@ -12,14 +12,14 @@ platform:
 steps:
 
 - name: build-maven
-  image: mvn
+  image: maven:3.6.2-jdk-11
   commands:
   - mvn clean install --batch-mode
 
 - name: sonar
-  image: mvn
+  image: maven:3.6.2-jdk-11
   commands:
-  - mvn verify sonar:sonar
+  - mvn clean verify sonar:sonar -Dsonar.login=371a5188195e16a5b9838856c9090718f6ce0089 -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.key=${DRONE_PULL_REQUEST} -Dsonar.pullrequest.branch=${DRONE_REPO_BRANCH} -Dsonar.pullrequest.github.repository=${DRONE_REPO}
   environment:
     MAVEN_OPTS: -Xmx512m
   depends_on:
