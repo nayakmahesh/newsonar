@@ -1,30 +1,19 @@
----
 kind: pipeline
-name: pr-test-sonarcloud
-
-node:
-  instance: highmemory
-  
-platform:
-  os: linux
-  arch: amd64
+name: pr-sonarcloud
 
 steps:
-
 - name: build-maven
   image: maven:3.6.2-jdk-11
   commands:
-  - mvn clean install --batch-mode
-
+  - mvn install --batch-mode
+  
 - name: sonar
   image: maven:3.6.2-jdk-11
   commands:
-  - mvn clean verify sonar:sonar -Dsonar.login=371a5188195e16a5b9838856c9090718f6ce0089 -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.key=${DRONE_PULL_REQUEST} -Dsonar.pullrequest.branch=${DRONE_REPO_BRANCH} -Dsonar.pullrequest.github.repository=${DRONE_REPO}
-  environment:
-    MAVEN_OPTS: -Xmx512m
+  - mvn clean verify sonar:sonar -Dsonar.login=371a5188195e16a5b9838856c9090718f6ce0089 -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.key=${DRONE_PULL_REQUEST} -Dsonar.pullrequest.branch=comment -Dsonar.pullrequest.github.repository=${DRONE_REPO}
   depends_on:
   - build-maven
-
+  
 trigger:
   event:
   - pull_request
