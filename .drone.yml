@@ -15,5 +15,7 @@ steps:
   - build-maven
   
 trigger:
+  ref:
+  - refs/pull/*/head
   event:
   - pull_request
