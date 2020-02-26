@@ -16,4 +16,5 @@ steps:
   - build-maven
   
 trigger:
+  event:
   - pull_request
