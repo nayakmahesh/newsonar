@@ -5,21 +5,16 @@ steps:
 - name: build-maven
   image: maven:3.6.2-jdk-11
   commands:
-  - ls -ltra
-  - echo $DRONE_COMMIT
-  - echo $DRONE_COMMIT_BRANCH
-  - echo $DRONE_COMMIT_LINK
-  - echo $DRONE_COMMIT_MESSAGE
-  - echo $DRONE_COMMIT_REF
-  - echo $DRONE_COMMIT_SHA
-  - DRONE_COMMIT_REF=refs/pull/7/head
-  - echo $DRONE_COMMIT
-  - echo $DRONE_COMMIT_BRANCH
-  - echo $DRONE_COMMIT_LINK
-  - echo $DRONE_COMMIT_MESSAGE
-  - echo $DRONE_COMMIT_REF
-  - echo $DRONE_COMMIT_SHA
-   
+  - mvn install --batch-mode
+  
+- name: sonar
+  image: maven:3.6.2-jdk-11
+  commands:
+  - git checkout -b ${DRONE_COMMIT}
+  - mvn clean verify sonar:sonar -Dsonar.login=371a5188195e16a5b9838856c9090718f6ce0089 -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.key=${DRONE_PULL_REQUEST} -Dsonar.pullrequest.branch=comment -Dsonar.pullrequest.github.repository=${DRONE_REPO}
+  depends_on:
+  - build-maven
+  
 trigger:
   event:
   - pull_request
