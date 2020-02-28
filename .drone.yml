@@ -10,8 +10,7 @@ steps:
   commands: 
   - git clone https://github.com/nayakmahesh/newsonar.git .
   - git checkout $DRONE_COMMIT
-  - DRONE_COMMIT_REF=refs/heads/master
-  - echo $DRONE_COMMIT_SHA
+  - git merge master
 
 - name: build-maven
   image: maven:3.6.2-jdk-11
