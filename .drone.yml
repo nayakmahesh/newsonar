@@ -5,15 +5,35 @@ steps:
 - name: build-maven
   image: maven:3.6.2-jdk-11
   commands:
-  - mvn install --batch-mode
+  - ls 
   
-- name: sonar
+- name: step1
   image: maven:3.6.2-jdk-11
   commands:
-  - git checkout -b ${DRONE_SOURCE_BRANCH}
-  - mvn clean verify sonar:sonar -Dsonar.login=371a5188195e16a5b9838856c9090718f6ce0089 -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.key=${DRONE_PULL_REQUEST} -Dsonar.pullrequest.branch=comment -Dsonar.pullrequest.github.repository=${DRONE_REPO}
+  - ls  
   depends_on:
   - build-maven
+  
+- name: step11
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+  depends_on:
+  - build-maven
+  
+- name: step2
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+  depends_on:
+  - build-maven  
+  
+  - name: step22
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+  depends_on:
+  - build-maven  
   
 trigger:
   ref:
