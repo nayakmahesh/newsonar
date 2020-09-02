@@ -26,12 +26,12 @@ steps:
   image: maven:3.6.2-jdk-11
   commands:
   - ls  
-
-  depends_on:
-  - step1
-  - step2
+- depends_on
+    - build-maven
+    - step1
+    - step2
   
-  
+   
 trigger:
   event:
   - pull_request
