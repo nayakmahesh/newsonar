@@ -26,6 +26,8 @@ steps:
   image: maven:3.6.2-jdk-11
   commands:
   - ls  
+  depends_on
+    - step1
    
 trigger:
   event:
