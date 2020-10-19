@@ -13,6 +13,8 @@ steps:
   commands:
   - echo "mahesh testing" 
   - sleep 5
+  depends_on: 
+  - smoke-test
 
 - name: build-maven-test2
   image: maven:3.6.2-jdk-11
