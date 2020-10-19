@@ -34,6 +34,8 @@ steps:
 
   depends_on: 
   - build-maven-test1
+  - build-maven-test2
+  - build-maven-test3
 
 trigger:
   event:
