@@ -82,7 +82,4 @@ steps:
  
 trigger:
   event:
-  - pull_request  
-
-depends_on: 
-- pr-sonarcloud
+  - pull_request
