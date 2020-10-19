@@ -32,8 +32,8 @@ steps:
   - echo "mahesh testing" 
   - sleep 5  
 
-depends_on: 
-- build-maven-test1
+  depends_on: 
+  - build-maven-test1
 
 trigger:
   event:
