@@ -26,8 +26,6 @@ steps:
   - ls
   depends_on:
    - smoke-test
-   - build-maven-test1
-   - build-maven-test2
  
 trigger:
   event:
