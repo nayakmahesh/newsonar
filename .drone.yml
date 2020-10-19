@@ -24,6 +24,10 @@ trigger:
   event:
   - pull_request
   
+depends_on: 
+- pr-sonarcloud1
+- pr-sonarcloud2
+  
 ---
 
 kind: pipeline
@@ -51,10 +55,6 @@ steps:
 trigger:
   event:
   - pull_request  
-
-depends_on: 
-- pr-sonarcloud
-
 
 ---
 
