@@ -54,3 +54,35 @@ trigger:
 
 depends_on: 
 - pr-sonarcloud
+
+
+---
+
+kind: pipeline
+name: pr-sonarcloud2
+
+steps:
+- name: build-maven-test
+  image: maven:3.6.2-jdk-11
+  commands:
+  - echo "mahesh testing" 
+  - sleep 5
+  
+- name: build-maven-test1
+  image: maven:3.6.2-jdk-11
+  commands:
+  - echo "mahesh testing" 
+  - sleep 5
+
+- name: build-maven-test2
+  image: maven:3.6.2-jdk-11
+  commands:
+  - echo "mahesh testing" 
+  - sleep 5
+ 
+trigger:
+  event:
+  - pull_request  
+
+depends_on: 
+- pr-sonarcloud
