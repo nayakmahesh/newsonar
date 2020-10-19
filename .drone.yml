@@ -48,7 +48,7 @@ steps:
   - echo "mahesh testing" 
   - sleep 5
   depends_on: 
-    pr-sonarcloud   
+  - pr-sonarcloud   
 trigger:
   event:
   - pull_request
