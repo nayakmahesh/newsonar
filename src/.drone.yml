@@ -1,0 +1,68 @@
+kind: pipeline
+name: pr-sonarcloud-11
+
+steps:
+- name: build-maven
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls 
+  - sleep 5
+  
+- name: step1
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+  - sleep 5
+  depends_on:
+    - build-maven
+    
+- name: step2
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+  - sleep 5
+  depends_on:
+    - build-maven
+  
+- name: step11
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+  - sleep 5
+  depends_on:
+    - step1
+    
+- name: step22
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+  - sleep 5
+  depends_on:
+    - step2
+
+  
+- name: step21
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+
+- name: step23
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+
+- name: step24
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+
+
+- name: step25
+  image: maven:3.6.2-jdk-11
+  commands:
+  - ls  
+
+   
+trigger:
+  event:
+  - pull_request

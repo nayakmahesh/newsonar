@@ -1,40 +1,44 @@
 kind: pipeline
-name: pr-sonarcloud
+name: pr-sonarcloud1
 
 steps:
-- name: build-maven
+- name: smoke-test
   image: maven:3.6.2-jdk-11
   commands:
-  - ls 
+  - echo "mahesh testing" 
+  - sleep 5
   
-- name: step1
+- name: build-maven-test1
   image: maven:3.6.2-jdk-11
   commands:
-  - ls  
-  depends_on:
-  - build-maven
-  
-- name: step11
+  - echo "mahesh testing" 
+  - sleep 5
+  depends_on: 
+  - smoke-test
+
+- name: build-maven-test2
   image: maven:3.6.2-jdk-11
   commands:
-  - ls  
-  depends_on:
-  - build-maven
+  - echo "mahesh testing" 
+  - sleep 5
   
-- name: step2
+- name: build-maven-test3
   image: maven:3.6.2-jdk-11
   commands:
-  - ls  
-  depends_on:
-  - build-maven  
+  - echo "mahesh testing" 
+  - sleep 5 
   
-- name: step22
+- name: build-maven-test4
   image: maven:3.6.2-jdk-11
   commands:
-  - ls  
-  depends_on:
-  - build-maven  
-  
+  - echo "mahesh testing" 
+  - sleep 5  
+
+  depends_on: 
+  - build-maven-test1
+  - build-maven-test2
+  - build-maven-test3
+
 trigger:
   event:
-  - pull_request
+  - pull_request  
